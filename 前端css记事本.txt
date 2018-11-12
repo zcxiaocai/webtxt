@@ -1,0 +1,169 @@
+mui框架页面不能滚动body后面加如下代码
+<script type="text/javascript">
+(function($){
+	
+    $(".mui-scroll-wrapper").scroll({
+		     
+        //bounce: false,//滚动条是否有弹力默认是true
+		
+        //indicators: false, //是否显示滚动条,默认是true
+	
+	}); 
+		
+    })(mui);
+	
+
+</script>
+
+div背景颜色渐变
+.divname{
+    background: -webkit-linear-gradient(#3cd6de, #39c975); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#3cd6de, #39c975); /* Opera 11s.1 - 12.0 */  
+    background: -moz-linear-gradient(#3cd6de, #39c975); /* Firefox 3.6 - 15 */  
+    background: linear-gradient(#3cd6de, #39c975); /* 标准的语法 */
+}
+
+div背景图片不重复
+.divname{
+    background-repeat:no-repeat ;
+}
+
+对话侧滑事件删除
+
+<div>
+
+	<ul id="OA_task_2" class="mui-table-view">
+
+	<li class="mui-table-view-cell">
+
+	<div class="mui-slider-right mui-disabled">
+
+	<a class="mui-btn mui-btn-yellow mui-icon">1</ a>
+
+	</div>
+
+	<div class="mui-slider-handle">
+
+	<div class="mui-table-cell">
+
+	左滑显示多功能菜单
+
+	</div>
+
+	</div>
+
+	</li>
+
+	</ul>
+
+	</div>
+
+</div>
+
+框架头部跳转
+function initDefault() {
+
+	mui('header').on('tap', 'a', function() {
+
+		var url = this.getAttribute('data-url');
+
+		WindowTools.openWinWithTemplate(null, url, null, {
+
+			templateOptions: {
+
+				title: '添加'
+
+			}
+
+		});
+
+	});
+
+}
+
+子页面向父页面传值
+
+function initEvent() {
+		
+/*
+			 * 父页面传值
+
+ */
+			//监听自定义事件，用于和B.html页面进行通信
+				window.addEventListener("changeCity", function(e) {
+				document.getElementById('youcai').innerHTML = e.detail.UserName;
+			});
+		
+	window.addEventListener("changePhone", function(e) {
+				
+		}
+
+mui('header').on('tap', '#sure', function(e) {
+	var UserName = $('#uses-id').val();
+	
+	console.log(UserName);
+		
+//获取父页面A.html
+
+	if(!detailPage)
+				
+	//获取父页面已经封装好的ID (template-level-sub-0);
+					detailPage = plus.webview.getWebviewById('template-level-sub-0');
+		//自定义事件,事件名为changeCity
+		
+	mui.fire(detailPage, 'changeCity', {
+	
+		UserName: UserName
+		
+		});
+			
+//关闭子页面
+				
+	mui.back();
+
+
+
+});
+
+
+
+手机端弹出遮罩层时禁止底层滚动
+
+手机端按用户体验来说，有弹出窗的出现的话底层应该禁止滚动，但手机端默认是滚动的；后来找到个简单的方法：动态修改html,body的overflow，注意：必须同时设置height：100%
+
+html,body{ height:100%, overflow:hidden }
+在弹出层消失时再把overflow属性修改为默认值恢复允许滚动状态：
+
+html,body{ height:100%, overflow:visible}
+
+
+
+
+// css
+
+-webkit-text-size-adjust:100%;  /*移动端横竖屏切换内容不放大*/
+
+-webkit-tap-highlight-color: rgba(0,0,0,0);   /*清除阴影效果   a标签 input  buttom*/
+
+-webkit-appearance: none;   /*清除按钮默认样式    buttom input*/
+
+outline: none;   	/*input发光效果*/
+
+vertical-align: middle;  /*input垂直居中*/
+
+.clearfix:after{
+	content: '';
+	display: block;   /*清除浮动*/
+	clear: both;
+}
+
+
+filter:blur(*px) ;括号里的值越大 模糊效果越明显
+	
+box-sizing: border-box;  /*怪异盒子模型 无法通过padding撑大 */
+
+ /*p标签1行显示+溢出省略 */
+word-break:keep-all;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
